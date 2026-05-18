@@ -36,7 +36,7 @@ public class FeedbackController {
         for (Feedback neededFeedback : feedbackList){
             if (neededFeedback.getId() == id){
                 //update
-                //neededFeedback.setContent(updateFeedback.getContent());
+                neededFeedback.setContent(updateFeedback.getContent());
                 return ResponseEntity.ok(neededFeedback);
             }
         }
