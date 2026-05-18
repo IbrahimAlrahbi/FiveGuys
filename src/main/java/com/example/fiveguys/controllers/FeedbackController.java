@@ -32,7 +32,7 @@ public class FeedbackController {
 
     @GetMapping
     public ResponseEntity<List<Feedback>> getAllFeedback() {
-        List<Feedback> allFeedback = feedbackRepository.findAll();
+        List<Feedback> allFeedback = feedbackList;
         return ResponseEntity.ok(allFeedback);
     }
 
