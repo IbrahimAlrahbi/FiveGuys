@@ -2,6 +2,7 @@ package com.example.fiveguys.controllers;
 
 import com.example.fiveguys.models.Feedback;
 import com.example.fiveguys.services.FeedbackService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,5 +35,19 @@ public class FeedbackController {
     public ResponseEntity<List<Feedback>> getAllFeedback() {
         List<Feedback> allFeedback = feedbackList;
         return ResponseEntity.ok(allFeedback);
+    }
+  
+  
+    // locate the feedback using id
+    @PutMapping("/{id}")
+    public ResponseEntity<Feedback> feedbackLocater(@PathVariable int id, @RequestBody Feedback updateFeedback){
+        for (Feedback neededFeedback : feedbackList){
+            if (neededFeedback.getId() == id){
+                //update
+                neededFeedback.setContent(updateFeedback.getContent());
+                return ResponseEntity.ok(neededFeedback);
+            }
+        }
+        return ResponseEntity.notFound().build();
     }
 }
