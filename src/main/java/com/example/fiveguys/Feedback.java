@@ -15,4 +15,8 @@ public class Feedback {
         return id;
     }
 
+    public String getContent() {
+        return content;
+    }
+
 }
