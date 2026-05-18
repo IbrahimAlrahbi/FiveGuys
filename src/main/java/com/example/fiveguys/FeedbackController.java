@@ -19,8 +19,10 @@ public class FeedbackController {
 
     @PostMapping
     public ResponseEntity<Feedback> createFeedback(@RequestBody FeedbackRequest request) {
-
+        Feedback feedback = new Feedback(nextId, request.getContent());
+        feedbackList.add(feedback);
+        nextId++;
+        return ResponseEntity.status(201).body(feedback);
     }
-
 
 }
