@@ -9,6 +9,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/feedback")
 public class FeedbackController {
+
     private List<Feedback> feedbackList = new ArrayList<>();
+
+    private int nextId = 1;
+
 
 }
