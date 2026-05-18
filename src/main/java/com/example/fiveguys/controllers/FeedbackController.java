@@ -1,5 +1,7 @@
-package com.example.fiveguys;
+package com.example.fiveguys.controllers;
 
+import com.example.fiveguys.models.Feedback;
+import com.example.fiveguys.services.FeedbackService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,7 +25,7 @@ public class FeedbackController {
 
     // Handles POST requests to create new feedback
     @PostMapping
-    public ResponseEntity<Feedback> createFeedback(@RequestBody FeedbackRequest request) {
+    public ResponseEntity<Feedback> createFeedback(@RequestBody FeedbackService request) {
         Feedback feedback = new Feedback(nextId, request.getContent());
         feedbackList.add(feedback);
         nextId++;

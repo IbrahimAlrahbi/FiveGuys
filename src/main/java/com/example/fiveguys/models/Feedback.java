@@ -1,4 +1,4 @@
-package com.example.fiveguys;
+package com.example.fiveguys.models;
 
 public class Feedback {
     // Unique ID for each feedback
