@@ -30,6 +30,14 @@ public class FeedbackController {
         // Return HTTP 201 Created with feedback data
         return ResponseEntity.status(201).body(feedback);
     }
+
+    @GetMapping
+    public ResponseEntity<List<Feedback>> getAllFeedback() {
+        List<Feedback> allFeedback = feedbackList;
+        return ResponseEntity.ok(allFeedback);
+    }
+  
+  
     // locate the feedback using id
     @PutMapping("/{id}")
     public ResponseEntity<Feedback> feedbackLocater(@PathVariable int id, @RequestBody Feedback updateFeedback){
