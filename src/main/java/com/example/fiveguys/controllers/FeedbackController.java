@@ -50,4 +50,15 @@ public class FeedbackController {
         }
         return ResponseEntity.notFound().build();
     }
+
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity<Feedback> feedbackDelete(@PathVariable int id){
+        for (Feedback deleteThisFeedback : feedbackList){
+            if (deleteThisFeedback.getId() == id){
+                feedbackList.remove(deleteThisFeedback);
+                return ResponseEntity.ok(deleteThisFeedback);
+            }
+        }
+        return ResponseEntity.notFound().build();
+    }
 }
