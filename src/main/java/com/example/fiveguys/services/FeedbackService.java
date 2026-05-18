@@ -17,12 +17,12 @@ public class FeedbackService {
     }
 
     // locate the feedback using id
-    public Feedback feedbackLocater(int id){
-        for (Feedback neededFeedback : feedbackList){
-            if (neededFeedback.getId() == id){
-                return neededFeedback;
-            }
-        }
-        return null;
-    }
+//    public Feedback feedbackLocater(int id){
+//        for (Feedback neededFeedback : feedbackList){
+//            if (neededFeedback.getId() == id){
+//                return neededFeedback;
+//            }
+//        }
+//        return null;
+//    }
 }
