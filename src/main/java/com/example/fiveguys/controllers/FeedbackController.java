@@ -40,6 +40,6 @@ public class FeedbackController {
                 return ResponseEntity.ok(neededFeedback);
             }
         }
-        return null; //ResponseEntity.notFound().build();
+        return ResponseEntity.notFound().build();
     }
 }
