@@ -11,4 +11,8 @@ public class Feedback {
         this.content = content;
     }
 
+    public int getId() {
+        return id;
+    }
+
 }
