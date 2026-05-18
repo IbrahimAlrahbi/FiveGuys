@@ -35,5 +35,4 @@ public class FeedbackController {
         List<Feedback> allFeedback = feedbackList;
         return ResponseEntity.ok(allFeedback);
     }
-
 }
