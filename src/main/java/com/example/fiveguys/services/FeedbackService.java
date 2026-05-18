@@ -1,6 +1,6 @@
-package com.example.fiveguys;
+package com.example.fiveguys.services;
 
-public class FeedbackRequest {
+public class FeedbackService {
     // Stores feedback text from client request
     private String content;
 
