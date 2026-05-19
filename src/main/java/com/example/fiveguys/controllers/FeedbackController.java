@@ -57,13 +57,13 @@ public class FeedbackController {
     }
 
     @DeleteMapping(path = "/{id}")
-    public ResponseEntity<Feedback> feedbackDelete(@PathVariable int id){
-        for (Feedback deleteThisFeedback : feedbackList){
-            if (deleteThisFeedback.getId() == id){
-                feedbackList.remove(deleteThisFeedback);
-                return ResponseEntity.ok(deleteThisFeedback);
-            }
+    public ResponseEntity<Feedback> feedbackDelete(@PathVariable int id) {
+        Feedback feedback = feedbackService.deleteFeedback(id);
+
+        if (feedback == null) {
+            return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.notFound().build();
+
+        return ResponseEntity.ok(feedback);
     }
 }
