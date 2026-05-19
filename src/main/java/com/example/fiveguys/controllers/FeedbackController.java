@@ -28,11 +28,21 @@ public class FeedbackController {
 
     @GetMapping
     public ResponseEntity<List<Feedback>> getAllFeedback() {
-        List<Feedback> allFeedback = feedbackList;
-        return ResponseEntity.ok(allFeedback);
+        return ResponseEntity.ok(feedbackService.getAllFeedbacks());
     }
-  
-  
+
+    @GetMapping(path = "/{id}")
+    public ResponseEntity<Feedback> getSpecificFeedback(@PathVariable int id) {
+        Feedback feedback = feedbackService.getFeedback(id);
+
+        if (feedback == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(feedback);
+    }
+
+
     // locate the feedback using id
     @PutMapping("/{id}")
     public ResponseEntity<Feedback> feedbackLocater(@PathVariable int id, @RequestBody Feedback updateFeedback){
