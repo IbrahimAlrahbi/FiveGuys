@@ -18,7 +18,7 @@ public class FeedbackService {
     public List<Feedback> getAllFeedbacks() {
         return feedbackList;
     }
-
+//=====================================================================================
     public Feedback getFeedback(int id) {
         for (Feedback feedback : feedbackList) {
             if (feedback.getId() == id) {
@@ -27,14 +27,14 @@ public class FeedbackService {
         }
         return null;
     }
-
+//=====================================================================================
     public Feedback createFeedback(Feedback incomingFeedback) {
         Feedback feedback = new Feedback(nextId, incomingFeedback.getContent());
         feedbackList.add(feedback);
         nextId++;
         return feedback;
     }
-
+//=====================================================================================
     public Feedback updateFeedback(int id, Feedback updateFeedback) {
         for (Feedback neededFeedback : feedbackList) {
             if (neededFeedback.getId() == id) {
@@ -44,7 +44,7 @@ public class FeedbackService {
         }
         return null;
     }
-
+//=====================================================================================
     public Feedback deleteFeedback(int id) {
         for (int i = 0; i < feedbackList.size(); i++) {
             Feedback feedback = feedbackList.get(i);

@@ -19,7 +19,8 @@ public class FeedbackController {
     @Autowired
     public FeedbackService feedbackService;
 
-
+//=====================================================================================
+    //ADDING feedbacks
     // Handles POST requests to create new feedback
     @PostMapping
     public ResponseEntity<Feedback> createFeedback(@RequestBody Feedback incomingFeedback) {
@@ -30,7 +31,8 @@ public class FeedbackController {
     public ResponseEntity<List<Feedback>> getAllFeedback() {
         return ResponseEntity.ok(feedbackService.getAllFeedbacks());
     }
-
+//=====================================================================================
+    //GET all feedbacks annotation
     @GetMapping(path = "/{id}")
     public ResponseEntity<Feedback> getSpecificFeedback(@PathVariable int id) {
         Feedback feedback = feedbackService.getFeedback(id);
@@ -42,7 +44,8 @@ public class FeedbackController {
         return ResponseEntity.ok(feedback);
     }
 
-
+//=====================================================================================
+    //MODIFYING annotation
     // locate the feedback using id
     @PutMapping("/{id}")
     public ResponseEntity<Feedback> feedbackLocater(@PathVariable int id, @RequestBody Feedback updateFeedback){
@@ -52,7 +55,8 @@ public class FeedbackController {
         }
         return ResponseEntity.ok(feedback);
     }
-
+//=====================================================================================
+    //DELETE annotation
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<Feedback> feedbackDelete(@PathVariable int id) {
         Feedback feedback = feedbackService.deleteFeedback(id);
