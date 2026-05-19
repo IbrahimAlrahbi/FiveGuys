@@ -1,0 +1,31 @@
+FiveGuys Application Deployment Instructions
+============================================
+
+1. Start the application (systemd):
+   sudo systemctl start fiveguys
+
+2. Stop the application:
+   sudo systemctl stop fiveguys
+
+3. Check status:
+   systemctl status fiveguys
+
+4. View live application logs:
+   journalctl -u fiveguys -f
+
+5. View watchdog status log:
+   cat ~/Desktop/fiveGuys/Deployment/Log/status.txt
+
+6. Enable auto-start on boot (already done if you ran the setup):
+   sudo systemctl enable fiveguys
+
+7. Disable auto-start on boot:
+   sudo systemctl disable fiveguys
+
+8. Restart the application:
+   sudo systemctl restart fiveguys
+
+9. Install/update the service (after modifying fiveguys.service):
+   sudo cp ~/Desktop/fiveGuys/Deployment/fiveguys.service /etc/systemd/system/
+   sudo systemctl daemon-reload
+   sudo systemctl restart fiveguys
