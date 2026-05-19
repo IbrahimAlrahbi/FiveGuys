@@ -34,10 +34,15 @@ public class FeedbackService {
         return feedback;
     }
 
-
-    // Updates feedback content
-    public void setContent(String content) {
-        this.content = content;
+    public Feedback updateFeedback(int id, Feedback updateFeedback) {
+        for (Feedback neededFeedback : feedbackList) {
+            if (neededFeedback.getId() == id) {
+                neededFeedback.setContent(updateFeedback.getContent());
+                return neededFeedback;
+            }
+        }
+        return null;
     }
 }
+
 
