@@ -46,14 +46,11 @@ public class FeedbackController {
     // locate the feedback using id
     @PutMapping("/{id}")
     public ResponseEntity<Feedback> feedbackLocater(@PathVariable int id, @RequestBody Feedback updateFeedback){
-        for (Feedback neededFeedback : feedbackList){
-            if (neededFeedback.getId() == id){
-                //update
-                neededFeedback.setContent(updateFeedback.getContent());
-                return ResponseEntity.ok(neededFeedback);
-            }
+        Feedback feedback = feedbackService.updateFeedback(id, updateFeedback);
+        if (feedback == null) {
+            return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(feedback);
     }
 
     @DeleteMapping(path = "/{id}")
