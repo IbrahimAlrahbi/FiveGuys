@@ -23,9 +23,7 @@ public class Feedback {
         return content;
     }
 
-    public String setContent(String content) {return this.content = content;}
-
-    public void setId(int id) {
-        this.id = id;
+    public String setContent(String content) {
+        return this.content = content;
     }
 }

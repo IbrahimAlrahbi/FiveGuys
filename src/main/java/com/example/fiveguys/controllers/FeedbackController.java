@@ -2,6 +2,7 @@ package com.example.fiveguys.controllers;
 
 import com.example.fiveguys.models.Feedback;
 import com.example.fiveguys.services.FeedbackService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,50 +16,51 @@ import java.util.List;
 // Base URL for all feedback endpoints
 @RequestMapping("/feedback")
 public class FeedbackController {
-    // Stores feedback entries temporarily in memory
-    private List<Feedback> feedbackList = new ArrayList<>();
+    @Autowired
+    public FeedbackService feedbackService;
 
-    // Generates unique IDs for feedback entries
-    private int nextId = 1;
 
     // Handles POST requests to create new feedback
     @PostMapping
-    public ResponseEntity<Feedback> createFeedback(@RequestBody FeedbackService request) {
-        Feedback feedback = new Feedback(nextId, request.getContent());
-        feedbackList.add(feedback);
-        nextId++;
-        // Return HTTP 201 Created with feedback data
-        return ResponseEntity.status(201).body(feedback);
+    public ResponseEntity<Feedback> createFeedback(@RequestBody Feedback incomingFeedback) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(feedbackService.createFeedback(incomingFeedback));
     }
 
     @GetMapping
     public ResponseEntity<List<Feedback>> getAllFeedback() {
-        List<Feedback> allFeedback = feedbackList;
-        return ResponseEntity.ok(allFeedback);
+        return ResponseEntity.ok(feedbackService.getAllFeedbacks());
     }
-  
-  
+
+    @GetMapping(path = "/{id}")
+    public ResponseEntity<Feedback> getSpecificFeedback(@PathVariable int id) {
+        Feedback feedback = feedbackService.getFeedback(id);
+
+        if (feedback == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(feedback);
+    }
+
+
     // locate the feedback using id
     @PutMapping("/{id}")
     public ResponseEntity<Feedback> feedbackLocater(@PathVariable int id, @RequestBody Feedback updateFeedback){
-        for (Feedback neededFeedback : feedbackList){
-            if (neededFeedback.getId() == id){
-                //update
-                neededFeedback.setContent(updateFeedback.getContent());
-                return ResponseEntity.ok(neededFeedback);
-            }
+        Feedback feedback = feedbackService.updateFeedback(id, updateFeedback);
+        if (feedback == null) {
+            return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(feedback);
     }
 
     @DeleteMapping(path = "/{id}")
-    public ResponseEntity<Feedback> feedbackDelete(@PathVariable int id){
-        for (Feedback deleteThisFeedback : feedbackList){
-            if (deleteThisFeedback.getId() == id){
-                feedbackList.remove(deleteThisFeedback);
-                return ResponseEntity.ok(deleteThisFeedback);
-            }
+    public ResponseEntity<Feedback> feedbackDelete(@PathVariable int id) {
+        Feedback feedback = feedbackService.deleteFeedback(id);
+
+        if (feedback == null) {
+            return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.notFound().build();
+
+        return ResponseEntity.ok(feedback);
     }
 }
