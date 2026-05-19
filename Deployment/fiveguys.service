@@ -1,0 +1,14 @@
+[Unit]
+Description=FiveGuys Application
+After=network.target
+
+[Service]
+Type=simple
+User=admin
+WorkingDirectory=/home/admin/Desktop/FiveGuys
+ExecStart=/usr/bin/java -jar /home/admin/Desktop/FiveGuys/target/fiveguys-0.0.1-SNAPSHOT.jar
+Restart=always
+RestartSec=60
+
+[Install]
+WantedBy=multi-user.target
