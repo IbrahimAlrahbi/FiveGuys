@@ -27,18 +27,17 @@ public class FeedbackService {
         return null;
     }
 
+    public Feedback createFeedback(Feedback incomingFeedback) {
+        Feedback feedback = new Feedback(nextId, incomingFeedback.getContent());
+        feedbackList.add(feedback);
+        nextId++;
+        return feedback;
+    }
+
+
     // Updates feedback content
     public void setContent(String content) {
         this.content = content;
     }
-
-    // locate the feedback using id
-//    public Feedback feedbackLocater(int id){
-//        for (Feedback neededFeedback : feedbackList){
-//            if (neededFeedback.getId() == id){
-//                return neededFeedback;
-//            }
-//        }
-//        return null;
-//    }
 }
+
