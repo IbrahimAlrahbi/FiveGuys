@@ -43,6 +43,17 @@ public class FeedbackService {
         }
         return null;
     }
+
+    public Feedback deleteFeedback(int id) {
+        for (int i = 0; i < feedbackList.size(); i++) {
+            Feedback feedback = feedbackList.get(i);
+            if (feedback.getId() == id) {
+                feedbackList.remove(i);
+                return feedback;
+            }
+        }
+        return null;
+    }
 }
 
 
